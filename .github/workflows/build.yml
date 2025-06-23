@@ -37,6 +37,8 @@ jobs:
           mkdir -p /home/runner/android-sdk/cmdline-tools
           unzip commandlinetools-linux-6609375_latest.zip -d /home/runner/android-sdk/cmdline-tools
           rm commandlinetools-linux-6609375_latest.zip
+          mv /home/runner/android-sdk/cmdline-tools/cmdline-tools/* /home/runner/android-sdk/cmdline-tools/
+          rmdir /home/runner/android-sdk/cmdline-tools/cmdline-tools
           echo "y" | /home/runner/android-sdk/cmdline-tools/bin/sdkmanager --licenses
           /home/runner/android-sdk/cmdline-tools/bin/sdkmanager "platform-tools" "build-tools;36.0.0" "platforms;android-30"
 
