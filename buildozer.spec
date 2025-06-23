@@ -1,8 +1,8 @@
-
 [app]
 title = برنامج مطابقة الأسماء والأقسام
 package.name = name_matcher
 package.version = 1.0.0
+source.dir = .
 source.include_exts = py,png,jpg,kv,xlsx
 source.include_patterns = assets/*, images/*
 requirements = python3,kivy,pandas,openpyxl,rapidfuzz
