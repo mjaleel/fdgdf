@@ -30,6 +30,12 @@ jobs:
           pip install cython
           pip install buildozer
 
+      - name: Install Android SDK
+        run: |
+          sudo apt-get install -y android-sdk
+          echo "y" | android update sdk --no-ui --filter "build-tools-36.0.0"
+          echo "y" | android update sdk --no-ui --filter "platform-tools"
+
       - name: Install Buildozer dependencies
         run: |
           sudo apt-get install -y libncurses5-dev libstdc++6 zlib1g-dev
