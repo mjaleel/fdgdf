@@ -30,18 +30,19 @@ jobs:
           pip install cython
           pip install buildozer
 
-      - name: Install Android SDK
+      - name: Install Android SDK command line tools
         run: |
-          sudo apt-get install -y android-sdk
-          echo "y" | sdkmanager "build-tools;36.0.0"
-          echo "y" | sdkmanager "platform-tools"
-          echo "y" | sdkmanager "platforms;android-30"
-          echo "y" | sdkmanager --licenses
+          sudo apt-get install -y wget
+          wget https://dl.google.com/android/repository/commandlinetools-linux-6609375_latest.zip
+          unzip commandlinetools-linux-6609375_latest.zip -d /usr/local/android-sdk
+          rm commandlinetools-linux-6609375_latest.zip
+          echo "y" | /usr/local/android-sdk/cmdline-tools/bin/sdkmanager --licenses
+          /usr/local/android-sdk/cmdline-tools/bin/sdkmanager "platform-tools" "build-tools;36.0.0" "platforms;android-30"
 
       - name: Set environment variables for Android SDK
         run: |
-          echo "ANDROID_HOME=/usr/lib/android-sdk" >> $GITHUB_ENV
-          echo "PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH" >> $GITHUB_ENV
+          echo "ANDROID_HOME=/usr/local/android-sdk" >> $GITHUB_ENV
+          echo "PATH=$ANDROID_HOME/cmdline-tools/bin:$ANDROID_HOME/platform-tools:$PATH" >> $GITHUB_ENV
 
       - name: Install Buildozer dependencies
         run: |
